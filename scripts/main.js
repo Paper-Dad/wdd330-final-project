@@ -170,18 +170,30 @@ let lastResults = []; // cache last TMDB search results for "Recommend another"
 let lastPrefs = null;
 
 async function recommendFromTMDB(prefs) {
-    const queryParts = [prefs.favoriteMovie, prefs.favoriteGenre, prefs.favoriteActor].filter(Boolean);
-    const query = queryParts.join(" ").trim();
+    const queryParts = [prefs.favoriteMovie, prefs.favoriteActor].filter(Boolean);
+    let query = queryParts.join(" ").trim();
 
+    // if they only picked a genre, search for that genre + "movie"
     if (!query) {
-        throw new Error("Please enter at least one preference (movie, genre, or actor).");
+        if (!prefs.favoriteGenre) {
+            throw new Error("Please enter a movie/actor or choose a genre.");
+        }
+        query = `${prefs.favoriteGenre} movie`.trim();
     }
-
+//********************************************************************/
+    console.log("TMDB QUERY SENT:", query);
+//********************************************************************/
     const searchData = await searchMovies(query);
+//********************************************************************/
+    console.log("TMDB RAW RESPONSE:", searchData);
+    console.log("TMDB RESULTS ARRAY:", searchData?.results);
+    console.log("TMDB RESULTS COUNT:", searchData?.results?.length);
+//*********************************************************************/
     lastResults = searchData?.results ?? [];
     lastPrefs = prefs;
 
     const chosen = pickBestMovie(lastResults, prefs);
+
     if (!chosen) return null;
 
     // Fetch credits + providers in parallel
