@@ -66,6 +66,27 @@ async function getWatchProviders(movieId) {
     return proxyTMDB(`/movie/${movieId}/watch/providers`, {});
 }
 
+// 1) Find a person ID by actor name
+async function searchPerson(name) {
+    return proxyTMDB("/search/person", {
+        query: name,
+        language: "en-US",
+        page: "1",
+        include_adult: "false",
+    });
+}
+
+// 2) Find movies that actor appears in
+async function discoverByCast(personId) {
+    return proxyTMDB("/discover/movie", {
+        with_cast: String(personId),
+        language: "en-US",
+        sort_by: "popularity.desc",
+        page: "1",
+        include_adult: "false",
+    });
+}
+
 function getLeadFromCredits(credits) {
     const cast = credits?.cast ?? [];
     // "order" is usually top-billed; fallback to first
@@ -170,8 +191,7 @@ let lastResults = []; // cache last TMDB search results for "Recommend another"
 let lastPrefs = null;
 
 async function recommendFromTMDB(prefs) {
-    const queryParts = [prefs.favoriteMovie, prefs.favoriteActor].filter(Boolean);
-    let query = queryParts.join(" ").trim();
+    let query = (prefs.favoriteMovie || prefs.favoriteGenre || "").trim();
 
     // if they only picked a genre, search for that genre + "movie"
     if (!query) {
@@ -180,15 +200,32 @@ async function recommendFromTMDB(prefs) {
         }
         query = `${prefs.favoriteGenre} movie`.trim();
     }
-//********************************************************************/
+    //********************************************************************/
     console.log("TMDB QUERY SENT:", query);
-//********************************************************************/
-    const searchData = await searchMovies(query);
-//********************************************************************/
+    //********************************************************************/
+    let searchData;
+
+    if (prefs.favoriteActor && prefs.favoriteActor.trim()) {
+
+        const people = await searchPerson(prefs.favoriteActor.trim());
+        const personId = people?.results?.[0]?.id;
+
+        if (personId) {
+            searchData = await discoverByCast(personId);
+        } else {
+            // fallback if actor name not found
+            searchData = await searchMovies(query);
+        }
+
+    } else {
+        // No actor entered → normal movie search
+        searchData = await searchMovies(query);
+    }
+    //********************************************************************/
     console.log("TMDB RAW RESPONSE:", searchData);
     console.log("TMDB RESULTS ARRAY:", searchData?.results);
     console.log("TMDB RESULTS COUNT:", searchData?.results?.length);
-//*********************************************************************/
+    //*********************************************************************/
     lastResults = searchData?.results ?? [];
     lastPrefs = prefs;
 
