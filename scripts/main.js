@@ -200,9 +200,7 @@ async function recommendFromTMDB(prefs) {
         }
         query = `${prefs.favoriteGenre} movie`.trim();
     }
-    //********************************************************************/
-    console.log("TMDB QUERY SENT:", query);
-    //********************************************************************/
+
     let searchData;
 
     if (prefs.favoriteActor && prefs.favoriteActor.trim()) {
@@ -221,11 +219,7 @@ async function recommendFromTMDB(prefs) {
         // No actor entered → normal movie search
         searchData = await searchMovies(query);
     }
-    //********************************************************************/
-    console.log("TMDB RAW RESPONSE:", searchData);
-    console.log("TMDB RESULTS ARRAY:", searchData?.results);
-    console.log("TMDB RESULTS COUNT:", searchData?.results?.length);
-    //*********************************************************************/
+
     lastResults = searchData?.results ?? [];
     lastPrefs = prefs;
 
