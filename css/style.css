@@ -1,0 +1,124 @@
+:root {
+    --primary-font: 'Montserrat', sans-serif;
+    --secondary-font: "Inter", serif;
+    --primary-color: #b30000;
+    --secondary-color: #EFBF04;
+}
+
+/*Header Info*/
+
+#main-header {
+    background-color: #0f0f0f;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.logo {
+    width: 48px;
+    height: auto;
+}
+
+#course-title {
+    font-family: var(--secondary-font);
+    font-size: 2rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--secondary-color);
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#main-header:hover {
+    border-bottom-color: var(--secondary-color);
+    transition: border-color 0.2s ease-in-out;
+}
+
+
+/*Main Info*/
+
+main {
+    background-color: #0f0f0f;
+}
+
+/*Form Info*/
+
+#preferences-form {
+    background-color: #121212;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--secondary-color);
+}
+
+#preferences-form label {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+#preferences-form .form-control,
+#preferences-form .form-select {
+    background-color: #1e1e1e;
+    color: #aaa;
+    border: 1px solid var(--secondary-color);
+}
+
+#preferences-form .form-control::placeholder {
+    color: #aaa;
+}
+
+#preferences-form .form-control:focus,
+#preferences-form .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: none;
+}
+
+.section-title {
+    color: var(--secondary-color);
+}
+
+/*Recommend Card*/
+
+#recommendation-card .card {
+    background-color: #121212;
+    border: 1px solid #2a2a2a;
+    color: #f5f5f5;
+}
+
+#recommendation-card .card-title {
+    color: var(--secondary-color);
+}
+
+
+/*Footer Info*/
+
+#main-footer {
+    background-color: #0f0f0f;
+    border-top: 3px solid var(--primary-color);
+}
+
+#main-footer .logo {
+    width: 32px;
+}
+
+.foot {
+    font-family: var(--secondary-font);
+    font-size: 0.9rem;
+    color: #ccc;
+    text-align: center;
+}
+
+.video {
+    font-family: var(--secondary-font);
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.video:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
