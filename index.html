@@ -80,6 +80,42 @@
                     </select>
                 </div>
 
+                <!-- Year -->
+                <div class="mb-3">
+                    <label for="release-year" class="form-label">Release Year</label>
+                    <input type="number" id="release-year" class="form-control" placeholder="e.g. 2020">
+                </div>
+
+                <!-- Rating -->
+                <div class="mb-3">
+                    <label for="min-rating" class="form-label">Minimum Rating (0–10)</label>
+                    <input type="number" id="min-rating" class="form-control" min="0" max="10" step="0.1">
+                </div>
+
+                <!-- Runtime -->
+                <div class="mb-3">
+                    <label for="runtime" class="form-label">Runtime</label>
+                    <select id="runtime" class="form-select">
+                        <option value="">Any length</option>
+                        <option value="short">Under 90 minutes</option>
+                        <option value="medium">90–120 minutes</option>
+                        <option value="long">Over 120 minutes</option>
+                    </select>
+                </div>
+
+                <!-- Mood -->
+                <div class="mb-3">
+                    <label for="mood" class="form-label">What mood are you in?</label>
+                    <select id="mood" class="form-select">
+                        <option value="">No preference</option>
+                        <option value="feelgood">Feel Good</option>
+                        <option value="dark">Dark</option>
+                        <option value="intense">Intense</option>
+                        <option value="funny">Funny</option>
+                        <option value="romantic">Romantic</option>
+                    </select>
+                </div>
+
                 <!-- Submit Button -->
                 <div class="d-grid">
                     <button type="submit" class="btn btn-danger btn-lg">

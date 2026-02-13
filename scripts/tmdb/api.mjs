@@ -26,12 +26,29 @@ export async function searchPerson(name) {
     });
 }
 
-export async function discoverByCast(personId) {
+export async function discoverMovies(filters = {}) {
     return proxyTMDB("/discover/movie", {
-        with_cast: String(personId),
         language: "en-US",
-        sort_by: "popularity.desc",
-        page: "1",
         include_adult: "false",
+        page: "1",
+        sort_by: filters.sortBy || "popularity.desc",
+
+        // KEY FILTERS
+        with_genres: filters.with_genres,
+        with_cast: filters.with_cast,
+
+        primary_release_year: filters.primary_release_year,
+        "vote_average.gte": filters.vote_average_gte,
+        with_original_language: filters.with_original_language,
+
+        "with_runtime.lte": filters.with_runtime_lte,
+        "with_runtime.gte": filters.with_runtime_gte,
+    });
+}
+
+export async function discoverByCast(personId) {
+    return discoverMovies({
+        with_cast: String(personId),
+        sortBy: "popularity.desc",
     });
 }
