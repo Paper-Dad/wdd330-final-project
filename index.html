@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MooV | Home</title>
     <meta name="description"
-        content="This web page serves as the home page for MooV.  MooV is a web application that recommends movies based off of you prefered options.">
+        content="This web page serves as the home page for MooV.  MooV is a web application that recommends movies based off of you preferred options.">
     <meta name="author" content="Benjamin Roberts">
     <meta property="og:title" content="MooV Home">
-    <meta property="og:description" content="Let MooV help you find the pefect movie.">
+    <meta property="og:description" content="Let MooV help you find the perfect movie.">
     <meta property="og:url" content="https://paper-dad.github.io/wdd330-final-project/index.html">
     <meta property="og:image" content="https://paper-dad.github.io/wdd330-final-project/images/MooVIcon.png">
     <link rel="stylesheet" href="css/style.css">
@@ -27,23 +27,23 @@
     <main>
         <section class="mx-auto" style="max-width: 600px;">
             <h2 class="text-center mb-4 section-title">Lets Get Watching!</h2>
-        
+
             <form id="preferences-form">
-        
+
                 <!-- Favorite Movie -->
                 <div class="mb-3">
                     <label for="favorite-movie" class="form-label">
                         Favorite Movie
                     </label>
-                    <input type="text" id="favorite-movie" class="form-control" placeholder="e.g. Inception" required>
+                    <input type="text" id="favorite-movie" class="form-control" placeholder="e.g. Inception">
                 </div>
-        
+
                 <!-- Favorite Genre -->
                 <div class="mb-3">
                     <label for="favorite-genre" class="form-label">
                         Favorite Genre
                     </label>
-                    <select id="favorite-genre" class="form-select" required>
+                    <select id="favorite-genre" class="form-select">
                         <option value="" disabled selected>Select a genre</option>
                         <option>Action</option>
                         <option>Comedy</option>
@@ -55,7 +55,7 @@
                         <option>Animation</option>
                     </select>
                 </div>
-        
+
                 <!-- Favorite Actor -->
                 <div class="mb-3">
                     <label for="favorite-actor" class="form-label">
@@ -63,13 +63,13 @@
                     </label>
                     <input type="text" id="favorite-actor" class="form-control" placeholder="e.g. Leonardo DiCaprio">
                 </div>
-        
+
                 <!-- Streaming Service -->
                 <div class="mb-4">
                     <label for="streaming-service" class="form-label">
                         Streaming Service You Have
                     </label>
-                    <select id="streaming-service" class="form-select" required>
+                    <select id="streaming-service" class="form-select">
                         <option value="" disabled selected>Select a service</option>
                         <option>Netflix</option>
                         <option>Disney+</option>
@@ -79,14 +79,14 @@
                         <option>Apple TV+</option>
                     </select>
                 </div>
-        
+
                 <!-- Submit Button -->
                 <div class="d-grid">
                     <button type="submit" class="btn btn-danger btn-lg">
                         Recommend a Movie, MooV!
                     </button>
                 </div>
-        
+
             </form>
         </section>
         <!--Recommendations-->
@@ -98,7 +98,7 @@
         </section>
     </main>
     <footer id="main-footer"></footer>
-    <script src="scripts/main.js" type="module"></script>
+    <script type="module" src="scripts/main.mjs"></script>
 </body>
 
 </html>
