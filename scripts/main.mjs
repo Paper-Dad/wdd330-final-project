@@ -12,15 +12,15 @@ if (form) {
         e.preventDefault();
 
         const prefs = {
-            favoriteMovie: document.getElementById("favorite-movie")?.value ?? "",
-            favoriteGenre: document.getElementById("favorite-genre")?.value ?? "",
-            favoriteActor: document.getElementById("favorite-actor")?.value ?? "",
-            streamingService: document.getElementById("streaming-service")?.value ?? "",
-            releaseYear: document.getElementById("release-year")?.value ?? "",
-            minRating: document.getElementById("min-rating")?.value ?? "",
-            runtime: document.getElementById("runtime")?.value ?? "",
-            language: document.getElementById("language")?.value ?? "",
-            sortBy: document.getElementById("sort-by")?.value ?? "",
+            favoriteMovie: (document.getElementById("favorite-movie")?.value ?? "").trim(),
+            favoriteGenre: (document.getElementById("favorite-genre")?.value ?? "").trim(),
+            favoriteActor: (document.getElementById("favorite-actor")?.value ?? "").trim(),
+            streamingService: (document.getElementById("streaming-service")?.value ?? "").trim(),
+            releaseYear: (document.getElementById("release-year")?.value ?? "").trim(),
+            minRating: (document.getElementById("min-rating")?.value ?? "").trim(),
+            runtime: (document.getElementById("runtime")?.value ?? "").trim(),
+            language: (document.getElementById("language")?.value ?? "").trim(),
+            sortBy: (document.getElementById("sort-by")?.value ?? "").trim(),
         };
 
         setRecoStatus(`<div class="alert alert-info">Finding a recommendation...</div>`);

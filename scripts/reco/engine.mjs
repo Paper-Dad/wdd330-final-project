@@ -20,6 +20,7 @@ export function getLastCache() {
 export async function recommendFromTMDB(prefs) {
     const genreId = getGenreId((prefs.favoriteGenre || "").trim());
     const hasGenre = !!genreId;
+    prefs.genreId = genreId;
 
     // Your original query for fallback text search
     let query = (prefs.favoriteMovie || "").trim();
@@ -62,10 +63,10 @@ export async function recommendFromTMDB(prefs) {
         searchData = await discoverMovies({
             with_genres: hasGenre ? String(genreId) : undefined,
             with_cast: personId ? String(personId) : undefined,
-            primary_release_year: prefs.releaseYear || undefined,
-            vote_average_gte: prefs.minRating || undefined,
-            with_original_language: prefs.language || undefined,
-            sortBy: prefs.sortBy || "popularity.desc",
+            primary_release_year: String(prefs.releaseYear || "").trim() || undefined,
+            vote_average_gte: String(prefs.minRating || "").trim() || undefined,
+            with_original_language: String(prefs.language || "").trim() || undefined,
+            sortBy: String(prefs.sortBy || "popularity.desc").trim(),  // ✅ correct key
             ...runtimeFilters,
         });
 

@@ -22,12 +22,8 @@ export function providersForCA(providersPayload) {
 export function scoreMovieResult(movie, prefs) {
     let score = 0;
 
-    const genre = normalize(prefs.favoriteGenre);
-    const service = normalize(prefs.streamingService);
-
-    if (genre) {
-        const haystack = normalize(`${movie.title} ${movie.overview ?? ""}`);
-        if (haystack.includes(genre)) score += 2;
+    if (prefs.genreId && Array.isArray(movie.genre_ids) && movie.genre_ids.includes(prefs.genreId)) {
+        score += 2;
     }
 
     if (prefs.favoriteMovie && normalize(movie.title) === normalize(prefs.favoriteMovie)) {
@@ -35,8 +31,6 @@ export function scoreMovieResult(movie, prefs) {
     }
 
     score += Math.min(2, (movie.popularity ?? 0) / 50);
-
-    if (service) score += 0.2;
 
     return score;
 }

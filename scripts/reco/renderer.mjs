@@ -6,7 +6,7 @@ export function renderRecommendationCard(movie, leadName, providerInfo) {
 
     const posterUrl = movie.poster_path
         ? `${IMG_BASE}${movie.poster_path}`
-        : "images/MoovIcon.png";
+        : "images/MooVIcon.png";
 
     const year = movie.release_date ? movie.release_date.slice(0, 4) : "—";
 
