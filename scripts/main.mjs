@@ -4,6 +4,19 @@ import { setRecoStatus } from "./reco/renderer.mjs";
 
 loadHeaderFooter();
 
+// Restore last saved preferences
+const savedPrefs = localStorage.getItem("moov-prefs");
+if (savedPrefs) {
+    const prefs = JSON.parse(savedPrefs);
+
+    Object.keys(prefs).forEach((key) => {
+        const el = document.getElementById(
+            key.replace(/[A-Z]/g, (m) => "-" + m.toLowerCase())
+        );
+        if (el) el.value = prefs[key];
+    });
+}
+
 // Wire up the form submit
 const form = document.getElementById("preferences-form");
 
@@ -25,21 +38,25 @@ if (form) {
 
         setRecoStatus(`<div class="alert alert-info">Finding a recommendation...</div>`);
 
+        form.classList.add("is-loading");
+
         try {
             const result = await recommendFromTMDB(prefs);
 
             if (!result) {
-                setRecoStatus(
-                    `<div class="alert alert-warning">No results found. Try different inputs.</div>`
-                );
+                setRecoStatus(`<div class="alert alert-warning">No results found. Try different inputs.</div>`);
+                return;
             }
+
+            localStorage.setItem("moov-prefs", JSON.stringify(prefs));
+            localStorage.setItem("moov-last", JSON.stringify(result));
 
             document.querySelector(".recommendation")?.scrollIntoView({ behavior: "smooth" });
         } catch (err) {
             console.error(err);
-            setRecoStatus(
-                `<div class="alert alert-danger">${err?.message || "Something went wrong."}</div>`
-            );
+            setRecoStatus(`<div class="alert alert-danger">${err?.message || "Something went wrong."}</div>`);
+        } finally {
+            form.classList.remove("is-loading");
         }
     });
 }

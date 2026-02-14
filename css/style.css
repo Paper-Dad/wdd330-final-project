@@ -15,6 +15,7 @@ body {
 #main-header {
     background-color: #0f0f0f;
     border-bottom: 3px solid var(--primary-color);
+    transition: border-color 0.2s ease-in-out;
 }
 
 .logo {
@@ -40,7 +41,6 @@ body {
 
 #main-header:hover {
     border-bottom-color: var(--secondary-color);
-    transition: border-color 0.2s ease-in-out;
 }
 
 
@@ -80,6 +80,14 @@ main {
 #preferences-form .form-select:focus {
     border-color: var(--primary-color);
     box-shadow: none;
+    transform: scale(1.1);
+    transition: transform 0.15s ease-in-out;
+}
+
+#preferences-form.is-loading {
+    opacity: 0.7;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .section-title {
