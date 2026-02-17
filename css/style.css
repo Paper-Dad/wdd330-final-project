@@ -76,6 +76,7 @@ main {
     color: #e0e0e0;
 }
 
+/*********************Transform*/
 #preferences-form .form-control:focus,
 #preferences-form .form-select:focus {
     border-color: var(--primary-color);
@@ -84,6 +85,7 @@ main {
     transition: transform 0.15s ease-in-out;
 }
 
+/********************Transitions*************/
 #preferences-form.is-loading {
     opacity: 0.7;
     pointer-events: none;

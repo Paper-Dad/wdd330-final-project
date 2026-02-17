@@ -58,7 +58,7 @@ export async function recommendFromTMDB(prefs) {
         !!String(prefs.runtime || "").trim();
 
     let searchData;
-
+        //*****************API USAGE*/
     if (shouldUseDiscover) {
         searchData = await discoverMovies({
             with_genres: hasGenre ? String(genreId) : undefined,
@@ -66,7 +66,7 @@ export async function recommendFromTMDB(prefs) {
             primary_release_year: String(prefs.releaseYear || "").trim() || undefined,
             vote_average_gte: String(prefs.minRating || "").trim() || undefined,
             with_original_language: String(prefs.language || "").trim() || undefined,
-            sortBy: String(prefs.sortBy || "popularity.desc").trim(),  // ✅ correct key
+            sortBy: String(prefs.sortBy || "popularity.desc").trim(),
             ...runtimeFilters,
         });
 
@@ -78,7 +78,7 @@ export async function recommendFromTMDB(prefs) {
         // simple fallback: user typed a movie title
         searchData = await searchMovies(query);
     }
-
+    //******STORE JSON ARRAY */
     lastResults = searchData?.results ?? [];
     lastPrefs = prefs;
 

@@ -1,7 +1,7 @@
 export function normalize(s) {
     return (s ?? "").trim().toLowerCase();
 }
-
+//****Processing */
 export function getLeadFromCredits(credits) {
     const cast = credits?.cast ?? [];
     const lead = cast
@@ -10,6 +10,7 @@ export function getLeadFromCredits(credits) {
     return lead?.name || "—";
 }
 
+//******Mapping */
 export function providersForCA(providersPayload) {
     const ca = providersPayload?.results?.CA;
     const flatrate = ca?.flatrate?.map((p) => p.provider_name) ?? [];
@@ -35,6 +36,8 @@ export function scoreMovieResult(movie, prefs) {
     return score;
 }
 
+
+//*****Selecting Results */
 export function pickBestMovie(results, prefs) {
     if (!results?.length) return null;
 

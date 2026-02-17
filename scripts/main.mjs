@@ -4,7 +4,7 @@ import { setRecoStatus } from "./reco/renderer.mjs";
 
 loadHeaderFooter();
 
-// Restore last saved preferences
+// *******Restore last saved preferences
 const savedPrefs = localStorage.getItem("moov-prefs");
 if (savedPrefs) {
     const prefs = JSON.parse(savedPrefs);
@@ -17,7 +17,7 @@ if (savedPrefs) {
     });
 }
 
-// Wire up the form submit
+// *******************Wire up the form submit
 const form = document.getElementById("preferences-form");
 
 if (form) {
@@ -37,7 +37,7 @@ if (form) {
         };
 
         setRecoStatus(`<div class="alert alert-info">Finding a recommendation...</div>`);
-
+        //******Loading class */
         form.classList.add("is-loading");
 
         try {
@@ -47,7 +47,7 @@ if (form) {
                 setRecoStatus(`<div class="alert alert-warning">No results found. Try different inputs.</div>`);
                 return;
             }
-
+            //*****Local storage */
             localStorage.setItem("moov-prefs", JSON.stringify(prefs));
             localStorage.setItem("moov-last", JSON.stringify(result));
 

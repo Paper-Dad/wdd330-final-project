@@ -13,7 +13,9 @@ export function renderRecommendationCard(movie, leadName, providerInfo) {
     const providersLine = providerInfo.flatrate.length
         ? providerInfo.flatrate.join(", ")
         : "No streaming providers found (CA)";
-
+    
+  
+    //********JSON Rendered Dynamically */ 
     container.innerHTML = `
     <div class="card shadow-sm">
       <div class="row g-0 align-items-stretch">

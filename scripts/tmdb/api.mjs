@@ -1,5 +1,5 @@
 import { proxyTMDB } from "./proxy.mjs";
-
+//******Search movie */
 export async function searchMovies(query) {
     return proxyTMDB("/search/movie", {
         query,
@@ -25,7 +25,7 @@ export async function searchPerson(name) {
         include_adult: "false",
     });
 }
-
+//*******Discover movie */
 export async function discoverMovies(filters = {}) {
     return proxyTMDB("/discover/movie", {
         language: "en-US",
